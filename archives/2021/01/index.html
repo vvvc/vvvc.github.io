@@ -20,20 +20,18 @@
     var CONFIG = {"hostname":"nmde.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="点击看详情">
-<meta property="og:type" content="article">
-<meta property="og:title" content="__weak、__block和__strong修饰符">
-<meta property="og:url" content="http://nmde.top/5dd6705.html">
+  <meta name="description" content="成长历程 IT笔记 黑苹果 杂谈 建站 服务器 VPS">
+<meta property="og:type" content="website">
+<meta property="og:title" content="不语记">
+<meta property="og:url" content="http://nmde.top/archives/2021/01/index.html">
 <meta property="og:site_name" content="不语记">
-<meta property="og:description" content="点击看详情">
+<meta property="og:description" content="成长历程 IT笔记 黑苹果 杂谈 建站 服务器 VPS">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-02-24T12:53:22.000Z">
-<meta property="article:modified_time" content="2020-02-25T12:58:10.000Z">
 <meta property="article:author" content="YAND">
-<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Hexo , Next">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://nmde.top/5dd6705.html">
+<link rel="canonical" href="http://nmde.top/archives/2021/01/">
 
 
 <script id="page-configurations">
@@ -41,12 +39,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>__weak、__block和__strong修饰符 | 不语记</title>
+  <title>归档 | 不语记</title>
   
 
 
@@ -160,107 +158,50 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content archive">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nmde.top/5dd6705.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="YAND">
-      <meta itemprop="description" content="成长历程 IT笔记 黑苹果 杂谈 建站 服务器 VPS">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不语记">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          __weak、__block和__strong修饰符
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-24 20:53:22" itemprop="dateCreated datePublished" datetime="2020-02-24T20:53:22+08:00">2020-02-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-25 20:58:10" itemprop="dateModified" datetime="2020-02-25T20:58:10+08:00">2020-02-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <span class="collection-header">嗯..! 目前共计 16 篇日志。 继续努力。</span>
+      </div>
 
       
-        <center>点击看详情</center>
-
-<a id="more"></a>
-
-<p>__weak本身是可以避免循环引用的问题的，但是其会导致外部对象释放了之后，block 内部也访问不到这个对象的问题，我们可以通过在 block 内部声明一个 </p>
-<p>__strong的变量来指向 Obj，使外部对象既能在 block 内部保持住，又能避免循环引用的问题。</p>
-<p>block 本身无法避免循环引用的问题，但是我们可以通过在 block 内部手动把 blockObj 赋值为 nil 的方式来避免循环引用的问题。另外一点就是block 修饰的变量在 block 内外都是唯一的，要注意这个特性可能带来的隐患。<br>总结：<br>1 . 在MRC（手动内存计数）模式下，<code>__block</code>修饰，可以避免循环引用；ARC（自动内存计数）模式下，<code>__block</code>修饰，还是会引起循环引用问题；<br>2 . <code>__block</code>不管是ARC还是MRC模式下都可以使用，可以修饰对象，还可以修饰基本数据类型；<br>3 . <code>__weak</code>只能在ARC模式下使用，也只能修饰对象，不能修饰基本数据类型；<br>4 . <code>__block</code>对象可以在block中被重新赋值，<code>__weak</code>不可以；</p>
-<p>API Reference对__block变量修饰符的解释，大概意思：<br>    1.__block对象在block中是可以被修改、重新赋值的。<br>    2.__block对象在block中不会被block强引用一次，从而不会出现循环引用问题。</p>
-<p>API Reference对__weak变量修饰符的解释，大概意思：<br>    使用了__weak修饰符的对象，作用等同于定义为weak的property。自然不会导致循环引用问题，因为苹果文档已经说的很清楚，当原对象没有任何强引用的时候，弱引用指针也会被设置为nil。<br>因此，__block和__weak修饰符的区别其实是挺明显的：<br>    1.__block不管是ARC还是MRC模式下都可以使用，可以修饰对象，还可以修饰基本数据类型。<br>    2.__weak只能在ARC模式下使用，也只能修饰对象（NSString），不能修饰基本数据类型（int）。<br>    3.__block对象可以在block中被重新赋值，__weak不可以。 </p>
-<p>Tips：__unsafe_unretained修饰符可以被视为iOS SDK 4.3以前版本的__weak的替代品，不过不会被自动置空为nil。所以尽可能不要使用这个修饰符。<br>Block的生命周期管理非常的微妙，与ARC混在一起后，更加复杂。<br>　　当Block延stack向上（up）传递的时候，直接返回，编译器会添加[[ copy] autorelease]代码。<br>　　当Block延stack向下传递给需要retain的容器的时候，需要显式的调用[^{} copy]方法。<br>　    在ARC下，__block修改的NSObject指针依然会被retain。<br>        在ARC下，一个block内引用一个对象的实例变量后，self会被retain，所以极易造成strong reference cycle，可以通过__weak指针来避免这种情形，因为ARC不会为__weak指针retain。</p>
-
+    <div class="collection-year">
+      <span class="collection-header">2021</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/iOS/" rel="tag"># iOS</a>
-          </div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-01-06T14:28:45+08:00"
+              content="2021-01-06">
+          01-06
+        </time>
+      </div>
 
-        
+      <div class="post-title">
+          <a class="post-title-link" href="/undefined.html" itemprop="url">
+            <span itemprop="name">玩客云Armbian安装Homeassistant</span>
+          </a>
+      </div>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/b1e125e5.html" rel="prev" title="环信IM开发笔记">
-      <i class="fa fa-chevron-left"></i> 环信IM开发笔记
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/51da334b.html" rel="next" title="iOS错误整理">
-      iOS错误整理 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+
+    </div>
+  </div>
   
   
+  
+
   
 
 
