@@ -224,7 +224,7 @@
       
         <center>点击看详情</center>
 
-<a id="more"></a>
+<span id="more"></span>
 
 <p>#2018-08-10：<br>        开始记录开发过程遇到的错误，时间长了，遇到过解决过的问题也忘掉了，所以以后的问题记下来。<br>#2018-10-11：<br>        A页面和B页面都存在 一个WKWebView。 但是在实践中发现：localStorage信息不一致。在B页面使用localStorage保存信息。 回到A页面取不到相应的数据。问题在于每个WKWebView的 ProcessPool，描述是：The process pool from which to obtain the view’s Web Content process.<br>####解决方法：<br>把config中的processPool变为单例共享</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">WKWebViewConfiguration *wkConfig &#x3D; [[WKWebViewConfiguration alloc] init];</span><br><span class="line">&#x2F;&#x2F;使用单例 解决locastorge 储存问题</span><br><span class="line">wkConfig.processPool &#x3D; [WkWebViewController singleWkProcessPool];</span><br><span class="line">_wkWebView &#x3D; [[WKWebView alloc] initWithFrame:CGRectZero configuration:wkConfig];</span><br></pre></td></tr></table></figure>
@@ -251,8 +251,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/b1e125e5.html" rel="prev" title="环信IM开发笔记">
-      <i class="fa fa-chevron-left"></i> 环信IM开发笔记
+    <a href="/5dd6705.html" rel="prev" title="__weak、__block和__strong修饰符">
+      <i class="fa fa-chevron-left"></i> __weak、__block和__strong修饰符
     </a></div>
       <div class="post-nav-item">
     <a href="/d692770.html" rel="next" title="设计模式">

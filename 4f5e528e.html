@@ -222,7 +222,7 @@
       
         <center>点击看详情</center>
 
-<a id="more"></a>
+<span id="more"></span>
 
 <p><a target="_blank" rel="noopener" href="http://blog.csdn.net/huangmindong/article/details/54848282">http://blog.csdn.net/huangmindong/article/details/54848282</a><br>语言本地化，又叫做语言国际化。是指根据用户操作系统的语言设置，自动将应用程序的语言设置为和用户操作系统语言一致的语言。往往一些应用程序需要提供给多个国家的人群使用，或者一个国家有多种语言，这就要求应用程序所展示的文字、图片等信息，能够让讲不同语言的用户读懂、看懂。进而提出为同一个应用程序适配多种语言，也即是国际化。语言国际化之所以又叫做语言本地化，这是站在每个用户的角度而言的，是指能够让用户本地、本土人群能够看懂的语言信息，顾名思义，语言本地化。其实语言本地化 == 语言国际化！</p>
 <p>本文将分如下7个主要章节一步一步讲解如何完全本地化一个App。</p>
@@ -325,7 +325,8 @@
 <p>// key：系统根据key取字符串</p>
 <p>// tbl：自定义strings文件的名字</p>
 <p>// comment：可以不传</p>
-<pre><code>NSLocalizedStringFromTable(, , )</code></pre>
+<pre><code>NSLocalizedStringFromTable(, , )
+</code></pre>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">32.png</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>#import “ViewController.h”</p>
 <p>@interface ViewController ()</p>
@@ -335,11 +336,10 @@
 <ul>
 <li><p>(void)viewDidLoad {</p>
 <p>  [super viewDidLoad];</p>
+<p>  NSString *title = NSLocalizedStringFromTable(@”click”, @”VVS”, nil);</p>
+<p>  [self.btn setTitle:title forState:UIControlStateNormal];</p>
 </li>
 </ul>
-<pre><code>NSString *title = NSLocalizedStringFromTable(@&quot;click&quot;, @&quot;VVS&quot;, nil);
-
-[self.btn setTitle:title forState:UIControlStateNormal];</code></pre>
 <p>}</p>
 <p>@end</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">运行效果，如下图：</span><br><span class="line"></span><br><span class="line">33.png</span><br><span class="line"></span><br><span class="line">如此一来，我们就可以挣脱别人的strings文件和系统默认的Localizable.strings文件，自己另起炉灶。</span><br><span class="line"></span><br><span class="line">（四）图片本地化</span><br><span class="line"></span><br><span class="line">本地化图片，有两种方式，第一种方式和本地化代码中的字符串一样，通过NSLocalizedString(key,comment)来获取相应的字符串，然后根据这个字符串再获取图片。</span><br><span class="line"></span><br><span class="line">方式一</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -355,13 +355,11 @@
 <ul>
 <li><p>(void)viewDidLoad {</p>
 <p>  [super viewDidLoad];</p>
+<p>  NSString *imageName = NSLocalizedString(@”icon”, nil);</p>
+<p>  UIImage *image = [UIImage imageNamed:imageName];</p>
+<p>  self.imageView.image = image;</p>
 </li>
 </ul>
-<pre><code>NSString *imageName = NSLocalizedString(@&quot;icon&quot;, nil);
-
-UIImage *image = [UIImage imageNamed:imageName];
-
-self.imageView.image = image;</code></pre>
 <p>}</p>
 <p>@end</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">english环境下运行效果如下：</span><br><span class="line"></span><br><span class="line">QQ截图20170122153125.png</span><br><span class="line"></span><br><span class="line">中文环境改下运行效果如下：</span><br><span class="line"></span><br><span class="line">41.png</span><br><span class="line"></span><br><span class="line">其他语言环境，例如法语、中文繁体、韩语，操作步骤完全和上面相同。都是在对应的.Iproj文件夹下添加同名的图片，然后把图片拖放到Xcode中，不再赘述。</span><br><span class="line"></span><br><span class="line">（五）查看&#x2F;切换本地语言</span><br><span class="line"></span><br><span class="line">原理：应用启动时，首先会读取NSUserDefaults中的key为AppleLanguages对应的value，该value是一个String数组，也就是说，我们访问这个名为AppleLanguages的key可以返回一个string数组，该数组存储着APP支持的语言列表，数组的第一项为APP当前默认的语言。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -372,13 +370,11 @@ self.imageView.image = image;</code></pre>
 <ul>
 <li><p>(void)viewDidLoad {</p>
 <p>  [super viewDidLoad];</p>
+<p>  NSArray *languages = [[NSUserDefaults standardUserDefaults] valueForKey:@”AppleLanguages”];</p>
+<p>  NSString *currentLanguage = languages.firstObject;</p>
+<p>  NSLog(@”模拟器当前语言：%@”,currentLanguage);</p>
 </li>
 </ul>
-<pre><code>NSArray *languages = [[NSUserDefaults standardUserDefaults] valueForKey:@&quot;AppleLanguages&quot;];
-
-NSString *currentLanguage = languages.firstObject;
-
-NSLog(@&quot;模拟器当前语言：%@&quot;,currentLanguage);</code></pre>
 <p>}</p>
 <p>@end</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-控制台打印结果：</span><br><span class="line"></span><br><span class="line">1055199-5f3eaa46f8afd678.png</span><br><span class="line"></span><br><span class="line">同理，既然我们可以通过AppleLanguages这个key从NSUserDefaults中取出语言数组，那么我们也可以给AppleLanguages这个key赋值来达到切换本地语言的效果，从此以后，我们就无需频繁的去模拟器的设置-&gt;通用-&gt;语言与地区 中切换语言。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -389,20 +385,13 @@ NSLog(@&quot;模拟器当前语言：%@&quot;,currentLanguage);</code></pre>
 <ul>
 <li><p>(void)viewDidLoad {</p>
 <p>  [super viewDidLoad];</p>
+<p>  // 切换语言前</p>
+<p>  NSArray *langArr1 = [[NSUserDefaults standardUserDefaults] valueForKey:@”AppleLanguages”];</p>
+<p>  NSString *language1 = langArr1.firstObject;</p>
+<p>  NSLog(@”模拟器语言切换之前：%@”,language1);</p>
 </li>
 </ul>
-<pre><code>// 切换语言前
-
-NSArray *langArr1 = [[NSUserDefaults standardUserDefaults] valueForKey:@&quot;AppleLanguages&quot;];
-
-NSString *language1 = langArr1.firstObject;
-
-NSLog(@&quot;模拟器语言切换之前：%@&quot;,language1);
-
-
-
-
-// 切换语言
+<pre><code>// 切换语言
 
 NSArray *lans = @[@&quot;en&quot;];
 
@@ -417,7 +406,8 @@ NSArray *langArr2 = [[NSUserDefaults standardUserDefaults] valueForKey:@&quot;Ap
 
 NSString *language2 = langArr2.firstObject;
 
-NSLog(@&quot;模拟器语言切换之后：%@&quot;,language2);</code></pre>
+NSLog(@&quot;模拟器语言切换之后：%@&quot;,language2);
+</code></pre>
 <p>}</p>
 <p>@end</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1055199-1ca3ab123ed3927e.png</span><br><span class="line"></span><br><span class="line">回想一下，我在上面的技巧一节中提过：切换语言无需在模拟器中设置，只需要在Xcode中进行如下设置： Edit-&gt;Scheme-&gt;Run-&gt;Arguments Passed On Launch -&gt;-AppleLanguages (语言代码)。其实本质上就是给NSUserDefaults中名为AppleLanguages的key赋值。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
